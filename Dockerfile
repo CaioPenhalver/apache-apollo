@@ -21,9 +21,11 @@ RUN apt-get -y install oracle-java8-installer
 RUN curl -L -O http://ftp.unicamp.br/pub/apache/activemq/activemq-apollo/1.7.1/apache-apollo-1.7.1-unix-distro.tar.gz
 RUN tar -zxvf apache-apollo-1.7.1-unix-distro.tar.gz
 WORKDIR /apache-apollo-1.7.1
-RUN ./bin/apollo create /var/lib/mybroker
+RUN ./bin/apollo create /var/lib/sensor_broker
 
 RUN mkdir -p /workspace
 
 WORKDIR /workspace
 ADD . /workspace
+
+CMD ["/var/lib/mybroker/bin/apollo-broker", "run"]
